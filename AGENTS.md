@@ -1,10 +1,10 @@
 # AGENTS.md — Video Explainer Agent
 
 ## Task
-Convert the provided content into a video explainer by writing `scenes.json`.
+Convert the provided content into a video explainer by writing `docs/scenes.json`.
 
 ## Hard rules
-- Edit ONLY `scenes.json`. Never touch `index.html`, `player.js`, `style.css`, `tokens.css`, `record.js`, `DESIGN.md`, `preview.html`, `scenes.schema.json`, or `.github/workflows/render.yml`.
+- Edit ONLY `docs/scenes.json`. Never touch `docs/player.html`, `docs/player.js`, `docs/style.css`, `docs/tokens.css`, `record.js`, `DESIGN.md`, `docs/preview.html`, `scenes.schema.json`, or `.github/workflows/render.yml`.
 - Output must be valid JSON. No comments, no trailing commas.
 - Follow the Reels design system in `DESIGN.md` (tokens, scene types, art direction, writing rules).
 - 6-12 scenes, ordered from intro to conclusion: `title` -> content/stat/bullets/quote scenes -> `outro`.
@@ -64,6 +64,6 @@ Optional top-level `"brand": "Reels"` overrides the watermark wordmark (default 
 ## Process
 1. Read the user's content.
 2. Outline scenes: title -> 4-9 body scenes (content/stat/bullets/quote) -> outro.
-3. Write `scenes.json`, then `npm run validate`.
+3. Write `docs/scenes.json`, then `npm run validate`.
 4. Commit with message `content: <video title>` and push (or open a PR if the user asked).
 5. Do NOT run the render workflow; the user triggers it from the Actions tab.

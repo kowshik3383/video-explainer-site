@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent playbook — Reels</title>
+<meta name="description" content="How to drive any coding agent (Antigravity, Claude, Cursor) with the Reels AGENTS.md contract: prompts, review loop, and the CI validation gate.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html">Guide</a></li>
+    <li><a href="scenes.html">Scenes</a></li>
+    <li><a href="design-system.html">Design</a></li>
+    <li><a href="agents.html" aria-current="page">Agents</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg></button>
+</header>
+
+<main class="docs-wrap">
+  <nav class="docs-sidebar" aria-label="Documentation">
+    <p>Documentation</p>
+    <a href="getting-started.html">Getting started</a>
+    <a href="scenes.html">Scenes reference</a>
+    <a href="design-system.html">Design system</a>
+    <a href="agents.html" aria-current="page">Agent playbook</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <article class="article">
+    <h1>Agent playbook</h1>
+    <p class="lede">Reels is designed around one asymmetry: the agent owns <em>content</em>, the repo owns <em>craft</em>. <code>AGENTS.md</code> is the contract that keeps those safe from each other.</p>
+
+    <h2>The contract, in one line</h2>
+    <div class="callout callout-green"><strong>Only <code>docs/scenes.json</code> may change.</strong> The schema, the design system, the player, the workflow — none of it is the agent’s job.</div>
+
+    <h2>What AGENTS.md tells the agent</h2>
+    <ul>
+      <li>Output valid JSON against <code>scenes.schema.json</code> — enforced locally with <code>npm run validate</code> and again in CI.</li>
+      <li>6–12 scenes, intro → conclusion, ending on an <code>outro</code>.</li>
+      <li>Duration 4–10s per scene; headings ≤ 6 words; body ≤ 15 words.</li>
+      <li>Unsplash-only images with mandated query params; real URLs, never invented IDs.</li>
+      <li><code>narration</code> written for every scene even though renders are silent today — it’s the TTS hook.</li>
+      <li>Commit message <code>content: &lt;video title&gt;</code>, push, stop. Do not trigger the render.</li>
+    </ul>
+
+    <h2>Proven prompt</h2>
+    <pre><code>Read AGENTS.md, then scenes.schema.json, then DESIGN.md.
+Take the content below and generate docs/scenes.json.
+Rules: title first, outro last, 6-12 scenes, all six types allowed,
+validate with npm run validate before committing.
+
+CONTENT:
+&lt;paste article / notes / topic here&gt;</code></pre>
+
+    <h2>The review loop</h2>
+    <ol style="margin:0 0 16px 22px;color:var(--color-ink-soft);line-height:1.65">
+      <li>Agent writes <code>docs/scenes.json</code>, runs <code>npm run validate</code>, commits, pushes.</li>
+      <li>You watch the Pages preview at <code>/player.html</code>. Does it read well? Do images load?</li>
+      <li>Ask for scene-level fixes: “scene 3 heading is vague”, “swap the farm photo”, “drop scene 5”.</li>
+      <li>Happy? Actions → Render video → Run workflow. Download the artifact.</li>
+    </ol>
+
+    <h2>Why the CI gate exists</h2>
+    <p>Agents are great at content and occasionally creative with JSON — invented photo IDs, 14-word headings, duration 30. The workflow runs <code>npm run validate</code> <em>before</em> touching Chromium, so a malformed deck fails in seconds instead of producing a broken 90-second recording. The schema is the bouncer; the agent never gets to the video.</p>
+
+    <h2>Antigravity (agy) notes</h2>
+    <p>Antigravity reads <code>AGENTS.md</code> the same way other coding agents do. Point it at the repo, give it the proven prompt, and let it work the loop. Two practical tips:</p>
+    <ul>
+      <li>Paste the schema or link it — agents that see the enum list stop inventing scene types.</li>
+      <li>Ask for the commit message <code>content: …</code> explicitly so <code>git log</code> stays readable over time.</li>
+    </ul>
+
+    <h2>Extending the system</h2>
+    <p>Want a new scene type (e.g. <code>comparison</code> for A/B)? That’s a <em>human</em> change: add it to <code>TEMPLATES</code> in <code>docs/player.js</code>, add the CSS, extend <code>scenes.schema.json</code>, and document it in <code>DESIGN.md</code> and this page. The agent gains a new ability exactly when you ship it — never before.</p>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a><a href="scenes.html">Scenes</a><a href="design-system.html">Design</a><a href="agents.html">Agents</a><a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

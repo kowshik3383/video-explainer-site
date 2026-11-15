@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design system — Reels</title>
+<meta name="description" content="The Reels design system: palette, typography, radii, shadows, motion, scene gallery, art direction, and do/don't rules.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html">Guide</a></li>
+    <li><a href="scenes.html">Scenes</a></li>
+    <li><a href="design-system.html" aria-current="page">Design</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg></button>
+</header>
+
+<main class="docs-wrap">
+  <nav class="docs-sidebar" aria-label="Documentation">
+    <p>Documentation</p>
+    <a href="getting-started.html">Getting started</a>
+    <a href="scenes.html">Scenes reference</a>
+    <a href="design-system.html" aria-current="page">Design system</a>
+    <a href="agents.html">Agent playbook</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <article class="article">
+    <h1>Design system</h1>
+    <p class="lede">One source of truth (<code>tokens.css</code>), six typed scenes, and strict art direction. Extracted from the Reels reference: mint page, white frame, soft green gradient panel, editorial serif.</p>
+
+    <h2>Palette</h2>
+    <div class="swatches">
+      <div class="swatch"><div class="block" style="background:#E9F4EC"></div><div class="meta"><b>Page</b><code>--color-page</code><br>#E9F4EC</div></div>
+      <div class="swatch"><div class="block" style="background:#FFFFFF"></div><div class="meta"><b>Frame</b><code>--color-frame</code><br>#FFFFFF</div></div>
+      <div class="swatch"><div class="block" style="background:linear-gradient(160deg,#DDF3E3,#BDE9CB)"></div><div class="meta"><b>Panel gradient</b><code>--color-panel-start / -end</code><br>#DDF3E3 → #BDE9CB</div></div>
+      <div class="swatch"><div class="block" style="background:#10130F"></div><div class="meta"><b>Ink</b><code>--color-ink</code><br>#10130F</div></div>
+      <div class="swatch"><div class="block" style="background:#F7DC7D"></div><div class="meta"><b>Accent yellow</b><code>--color-accent-yellow</code><br>#F7DC7D</div></div>
+      <div class="swatch"><div class="block" style="background:#2E9E63"></div><div class="meta"><b>Accent green</b><code>--color-accent-green</code><br>#2E9E63</div></div>
+    </div>
+
+    <h2>Typography</h2>
+    <p style="font-family:var(--font-display);font-size:38px;font-weight:620;letter-spacing:-0.02em;margin-bottom:2px">Fraunces — display</p>
+    <p style="color:var(--color-ink-faint);font-size:13px;margin-bottom:18px">Variable serif, optical sizing, 560–620 weight. Headlines, quotes, the stat number.</p>
+    <p style="font-family:var(--font-body);font-size:20px;font-weight:500;margin-bottom:2px">Inter — body &amp; labels</p>
+    <p style="color:var(--color-ink-faint);font-size:13px">400–750 weight. Body copy, kickers (uppercase, 0.16em tracking), buttons, meta lines.</p>
+    <table class="doc-table" style="margin-top:18px">
+      <thead><tr><th>Role</th><th>Size</th></tr></thead>
+      <tbody>
+        <tr><td>Kicker</td><td>15px, uppercase, 0.16em</td></tr>
+        <tr><td>Body</td><td>24px / 28px large</td></tr>
+        <tr><td>H2 (scene heading)</td><td>54px</td></tr>
+        <tr><td>Display (title scene)</td><td>108px</td></tr>
+        <tr><td>Stat hero</td><td>150px</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Shape &amp; depth</h2>
+    <ul>
+      <li>Radii: frame 32px · panel 26px · card 22px · pill 999px.</li>
+      <li>Shadows are soft and green-tinted — never neutral gray: frame <code>0 40px 80px rgba(16,40,24,.28)</code>, card <code>0 24px 60px rgba(16,40,24,.22)</code>, pill <code>0 10px 28px rgba(16,40,24,.16)</code>.</li>
+      <li>Composition: 1280×720 stage → white frame → 16px inset → gradient panel. Copy left, imagery right.</li>
+    </ul>
+
+    <h2>Motion</h2>
+    <ul>
+      <li>Enter: panel fades 0.35s; contents stagger up 34px → 0, 90ms apart, <code>power3.out</code>.</li>
+      <li>Exit: scene fades out 0.35s. Progress bar fills linearly across the scene’s duration.</li>
+    </ul>
+
+    <h2>Scene gallery</h2>
+    <iframe class="kitchen-sink" src="preview.html" title="Static render of all six scene types" loading="lazy"></iframe>
+    <p>Every scene type rendered statically — <a href="preview.html">open the kitchen sink full screen</a>.</p>
+
+    <h2>Art direction</h2>
+    <ul>
+      <li>Photography: Unsplash only, <code>?w=1280&amp;q=80&amp;auto=format&amp;fit=crop</code>. Natural light, one clear subject, no collages.</li>
+      <li>Card treatment: full-bleed photo inside <code>--radius-card</code>, soft shadow, one yellow floating badge (≤ 3 words).</li>
+      <li>One accent per scene — a yellow badge, <em>or</em> green checks, <em>or</em> an emerald quote mark. Never stacked.</li>
+    </ul>
+
+    <h2>Do / Don’t</h2>
+    <ul>
+      <li><strong>Do</strong> keep one idea per scene — a viewer should get it in two seconds.</li>
+      <li><strong>Do</strong> use values from tokens.css; if you need a new one, add it there, not inline.</li>
+      <li><strong>Don’t</strong> hardcode hex values or pixel sizes in scenes.</li>
+      <li><strong>Don’t</strong> change player/index/style files for a content-only update — scenes.json is the contract.</li>
+      <li><strong>Don’t</strong> use more than one image per scene, or any non-Unsplash hotlink you don’t control.</li>
+    </ul>
+
+    <div class="callout callout-green"><strong>Source of truth:</strong> <code>DESIGN.md</code> and <code>tokens.css</code> in the repo root / docs folder. This page summarizes them; the files win on any conflict.</div>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a><a href="scenes.html">Scenes</a><a href="design-system.html">Design</a><a href="agents.html">Agents</a><a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

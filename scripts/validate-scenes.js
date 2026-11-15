@@ -3,7 +3,7 @@ const path = require('path');
 const Ajv2020 = require('ajv/dist/2020');
 
 const schemaPath = path.join(__dirname, '..', 'scenes.schema.json');
-const scenesPath = path.join(__dirname, '..', 'scenes.json');
+const scenesPath = path.join(__dirname, '..', 'docs', 'scenes.json');
 
 const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
 const data = JSON.parse(fs.readFileSync(scenesPath, 'utf8'));

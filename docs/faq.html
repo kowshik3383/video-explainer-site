@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — Reels</title>
+<meta name="description" content="Silent renders, TTS voice-over, artifact expiry, hotlinked images, cache busting, render time, resolution, and cost.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html">Guide</a></li>
+    <li><a href="scenes.html">Scenes</a></li>
+    <li><a href="design-system.html">Design</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="faq.html" aria-current="page">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg></button>
+</header>
+
+<main class="docs-wrap">
+  <nav class="docs-sidebar" aria-label="Documentation">
+    <p>Documentation</p>
+    <a href="getting-started.html">Getting started</a>
+    <a href="scenes.html">Scenes reference</a>
+    <a href="design-system.html">Design system</a>
+    <a href="agents.html">Agent playbook</a>
+    <a href="faq.html" aria-current="page">FAQ</a>
+  </nav>
+
+  <article class="article">
+    <h1>FAQ</h1>
+    <p class="lede">Short answers to the questions that come up on the first weekend with Reels.</p>
+
+    <h3>Why is my rendered video silent?</h3>
+    <p>Headless Chromium recording doesn’t capture audio, and <code>speechSynthesis</code> doesn’t run in headless mode. Silent is the default by design. Every scene already carries <code>narration</code> — when you want voice, a script generates one audio file per scene from that text and ffmpeg merges them into the final MP4. No player changes needed.</p>
+
+    <h3>Can I add voice-over now, myself?</h3>
+    <p>Yes. Generate TTS audio per scene (any provider — OpenAI, Google, ElevenLabs), save as <code>audio/scene-01.mp3</code> …, then in the workflow replace the convert step with an ffmpeg filter that concatenates and muxes. Budget ~30 minutes the first time; keep narration fields in sync with the scene order.</p>
+
+    <h3>The artifact downloaded but won’t play — is the workflow broken?</h3>
+    <p>Almost never broken; it’s usually the player cached at an older commit. Pages rebuilds on every push but caches aggressively — hard-refresh the player URL (Ctrl+Shift+R) or bump a query param. If the deck itself is invalid, the CI <code>npm run validate</code> step fails before recording, and the run log says exactly which field is wrong.</p>
+
+    <h3>Are hotlinked Unsplash images safe?</h3>
+    <p>For reliability: mostly yes; for permanence: no. Hotlinks can die or change crop. Production-grade option: download chosen images into the repo (e.g. <code>docs/assets/</code>) and reference them relatively — Actions checkouts then work offline and never rot. Check each photo’s license/attribution terms if you publish commercially.</p>
+
+    <h3>How long does a render take and what does it cost?</h3>
+    <p>About 2 minutes on <code>ubuntu-latest</code> for an 8–12 scene deck (Playwright install dominates). Compute is billed against your Actions minutes — free tier covers hundreds of renders per month. The artifact (the MP4) expires after 90 days by default; raise <code>retention-days</code> in <code>render.yml</code> if you need longer.</p>
+
+    <h3>Can I change the resolution or aspect ratio?</h3>
+    <p>The player is 1280×720 16:9 end to end. Changing it means editing <code>--stage-width/height</code> in <code>tokens.css</code>, <code>viewport</code> and <code>recordVideo.size</code> in <code>record.js</code>. Doable, but do it deliberately — scene layouts are composed for 16:9.</p>
+
+    <h3>Can the agent edit index/player files ever?</h3>
+    <p>No — and you shouldn’t let it. Everything the audience sees is governed by <code>scenes.schema.json</code>; the schema is the API between human craft and agent content. If a constraint is wrong, change it in the schema and the docs together, then re-validate.</p>
+
+    <h3>Where does the “DONE” title come from?</h3>
+    <p><code>docs/player.js</code> sets <code>document.title = 'DONE'</code> after the last scene (plus a 2.5s end card). <code>record.js</code> polls the title via Playwright — flip to anything else and the recorder waits forever and the job times out at 300s.</p>
+
+    <h3>Can I render on every push instead of a button?</h3>
+    <p>Yes — swap <code>workflow_dispatch</code> for <code>push</code> on paths <code>docs/scenes.json</code>. You’ll get an artifact per content commit. Most people prefer the button: it keeps Actions minutes and artifact storage predictable.</p>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a><a href="scenes.html">Scenes</a><a href="design-system.html">Design</a><a href="agents.html">Agents</a><a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

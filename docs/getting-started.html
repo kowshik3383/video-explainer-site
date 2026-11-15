@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Getting started — Reels</title>
+<meta name="description" content="Fork the Reels repo, enable GitHub Pages, trigger the render workflow, and download video.mp4 in about ten minutes.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html" aria-current="page">Guide</a></li>
+    <li><a href="scenes.html">Scenes</a></li>
+    <li><a href="design-system.html">Design</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg></button>
+</header>
+
+<main class="docs-wrap">
+  <nav class="docs-sidebar" aria-label="Documentation">
+    <p>Documentation</p>
+    <a href="getting-started.html" aria-current="page">Getting started</a>
+    <a href="scenes.html">Scenes reference</a>
+    <a href="design-system.html">Design system</a>
+    <a href="agents.html">Agent playbook</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <article class="article">
+    <h1>Getting started</h1>
+    <p class="lede">From zero to a rendered video.mp4 in about ten minutes — one fork, one switch, one button.</p>
+
+    <div class="callout callout-green"><strong>What you need:</strong> a GitHub account, the <code>gh</code> CLI (or the web UI), and any coding agent that can edit a repo. No local video tooling, no ffmpeg on your machine.</div>
+
+    <h2>1. Fork or clone the repo</h2>
+    <pre><code>gh repo fork kowshik3383/video-explainer-site --clone
+cd video-explainer-site</code></pre>
+    <p>Or click <strong>Fork</strong> on GitHub. The repo is public; everything you push is visible to Pages.</p>
+
+    <h2>2. Enable GitHub Pages</h2>
+    <pre><code>gh api repos/OWNER/video-explainer-site/pages -X POST \
+  -f "source[branch]=main" -f "source[path]=/docs"</code></pre>
+    <p>This publishes the website <em>and</em> the player. Your video preview lives at <code>https://OWNER.github.io/video-explainer-site/player.html</code>.</p>
+
+    <h2>3. Preview the demo render</h2>
+    <p>Open the player URL — it auto-plays the 8-scene “How Photosynthesis Works” deck and sets the tab title to <code>DONE</code> at the end. That title flip is how the recorder knows when to stop.</p>
+
+    <h2>4. Make your first video</h2>
+    <p>Open your agent (Antigravity, Claude, Cursor — anything) and say:</p>
+    <pre><code>Read AGENTS.md, take this content, and generate scenes.json:
+&lt;paste your notes, article, or topic here&gt;</code></pre>
+    <p>The agent edits <strong>only</strong> <code>docs/scenes.json</code>, runs <code>npm run validate</code>, commits, and pushes. Nothing else in the repo changes.</p>
+
+    <h2>5. Render it</h2>
+    <p>Go to <strong>Actions → Render video → Run workflow</strong>. About two minutes later the run produces a <code>video</code> artifact containing <code>video.mp4</code> (1280×720).</p>
+    <pre><code>gh workflow run render.yml --repo OWNER/video-explainer-site
+gh run list --repo OWNER/video-explainer-site --limit 1
+gh run watch &lt;run-id&gt; --exit-status
+gh run download &lt;run-id&gt; --name video</code></pre>
+
+    <h2>6. Iterate</h2>
+    <p>Watch the Pages preview, ask the agent for scene-level fixes (“make scene 4 shorter”, “swap the farm image for a drying-rack shot”), re-run the workflow, download a fresh artifact. Artifacts expire after 90 days — keep the ones you love.</p>
+
+    <div class="callout callout-yellow"><strong>Heads up:</strong> the recorded MP4 is silent by design. See <a href="faq.html">FAQ → voice-over</a> for the TTS plan, and <a href="scenes.html">scenes.json reference</a> for the exact schema your agent targets.</div>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a><a href="scenes.html">Scenes</a><a href="design-system.html">Design</a><a href="agents.html">Agents</a><a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

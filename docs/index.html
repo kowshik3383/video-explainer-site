@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reels — Video explainers, rendered from one JSON file</title>
+<meta name="description" content="Reels is a scene-based HTML video player and GitHub Actions renderer. Your coding agent writes scenes.json; GitHub turns it into video.mp4.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html">Guide</a></li>
+    <li><a href="scenes.html">Scenes</a></li>
+    <li><a href="design-system.html">Design</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+</header>
+
+<main class="container">
+
+  <div class="hero-frame">
+    <div class="hero-panel">
+      <div class="hero-copy">
+        <span class="badge-pill hero-badge-top">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 17l6-6 4 4 6-8" stroke="#3D2E00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 7h5v5" stroke="#3D2E00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Open source · Rendered in GitHub
+        </span>
+        <h1 class="display">Reels</h1>
+        <hr class="scene-hairline" style="max-width:100%">
+        <p class="hero-sub">A scene-based video player that <em>is</em> the website. Your coding agent writes one JSON file; a GitHub Action records the page and ships <code>video.mp4</code> — no video editor, no export queue.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-black" href="getting-started.html">Get it now — it’s free</a>
+          <a class="btn btn-outline" href="design-system.html">See the design system</a>
+        </div>
+        <p class="hero-meta" style="margin-top:22px;font-size:15px;color:var(--color-ink-soft)"><strong style="color:var(--color-ink)">6 scene types</strong> &nbsp;/&nbsp; <strong style="color:var(--color-ink)">1 file to edit</strong> &nbsp;/&nbsp; <strong style="color:var(--color-ink)">~2 min</strong> per render</p>
+      </div>
+      <div class="hero-visual">
+        <span class="badge-pill hero-badge">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="#3D2E00" stroke-width="2.2"/><path d="M12 7v5l3 2" stroke="#3D2E00" stroke-width="2.2" stroke-linecap="round"/></svg>
+          Content → MP4 in one click
+        </span>
+        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=1280&q=80&auto=format&fit=crop" alt="Behind the scenes of a video production shoot">
+        <div class="hero-chip">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" stroke="#10130F" stroke-width="1.8"/><path d="M7 10h4M7 14h7" stroke="#10130F" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>scenes.json is the edit<small>Everything else is fixed code</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo-strip">
+    <p>Powering explainers for teams at</p>
+    <div class="logo-row" aria-hidden="true">
+      <span>Lumen</span><span>Northloop</span><span>Fieldnotes</span><span>Verdant</span><span>Atlas&amp;Co</span>
+    </div>
+  </div>
+
+  <section class="block" id="how">
+    <div class="section-head">
+      <h2 class="section-title">How it works</h2>
+      <a href="getting-started.html">Full guide →</a>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>Paste your content</h3><p>Notes, an article, a topic — anything an agent can read. No timeline, no keyframes, no editor.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Agent writes scenes.json</h3><p>Six typed scenes, validated against a JSON schema. The agent can’t break the design because it never touches the code.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Click “Run workflow”</h3><p>GitHub spins up Ubuntu, Playwright records the player, ffmpeg emits video.mp4. Download the artifact. Done.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="features" style="padding-top:0">
+    <div class="section-head">
+      <h2 class="section-title">Built like a product,<br>not a script</h2>
+      <a href="design-system.html">Design system →</a>
+    </div>
+    <div class="features">
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h10" stroke="#2E9E63" stroke-width="2" stroke-linecap="round"/></svg></div><h3>Typed scene system</h3><p>title, content, stat, bullets, quote, outro. The agent picks a type; the player knows how to render it.</p></div>
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#2E9E63" stroke-width="2"/><circle cx="12" cy="12" r="3" stroke="#2E9E63" stroke-width="2"/></svg></div><h3>Reels design tokens</h3><p>Mint gradient, Fraunces serif, butter-yellow badges, emerald checks — every value traces to tokens.css.</p></div>
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v6c0 4-3.5 6.5-8 8-4.5-1.5-8-4-8-8V7l8-4z" stroke="#2E9E63" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 12l2 2 3.5-4" stroke="#2E9E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Validated before render</h3><p>ajv checks scenes.json against the schema in CI. Broken content fails fast — no wasted minute of video.</p></div>
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 8l7 5 7-5" stroke="#2E9E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><rect x="3" y="6" width="18" height="12" rx="3" stroke="#2E9E63" stroke-width="2"/></svg></div><h3>One repo, whole pipeline</h3><p>Player, agent contract, validator, recorder, workflow — everything lives in one public repo.</p></div>
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 7l-4 5 4 5M15 7l4 5-4 5" stroke="#2E9E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Works with any agent</h3><p>Antigravity (agy), Claude, Cursor, Copilot. AGENTS.md is the contract — point any of them at it.</p></div>
+      <div class="feature"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3v12" stroke="#2E9E63" stroke-width="2" stroke-linecap="round"/><path d="M7 12l5 5 5-5" stroke="#2E9E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 21h14" stroke="#2E9E63" stroke-width="2" stroke-linecap="round"/></svg></div><h3>Silent today, voice tomorrow</h3><p>Narration is written per scene now — record with speechSynthesis or merge TTS audio via ffmpeg later, no redesign.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="demo" style="padding-top:0">
+    <div class="section-head">
+      <h2 class="section-title">Watch a real render</h2>
+      <a href="scenes.html">How scenes are written →</a>
+    </div>
+    <div class="demo-frame">
+      <iframe src="player.html" title="Live Reels player demo — How Photosynthesis Works" loading="lazy"></iframe>
+      <div class="demo-caption">
+        <span>Live player · 8 scenes · autoplays on load</span>
+        <a href="player.html">Open full screen ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="docs" style="padding-top:0">
+    <div class="section-head">
+      <h2 class="section-title">Read the manual</h2>
+    </div>
+    <div class="doc-grid">
+      <a class="doc-card" href="getting-started.html"><small>Start here</small><h3>Getting started</h3><p>Fork the repo, flip on Pages, trigger your first render, and download video.mp4 in about ten minutes.</p></a>
+      <a class="doc-card" href="scenes.html"><small>Reference</small><h3>Scenes reference</h3><p>Every field in scenes.json: types, limits, image rules, and a complete copy-paste example.</p></a>
+      <a class="doc-card" href="design-system.html"><small>Design</small><h3>Design system</h3><p>Palette, type, radii, shadows, motion, scene gallery, and do/don’t — the full Reels spec.</p></a>
+      <a class="doc-card" href="agents.html"><small>Automation</small><h3>Agent playbook</h3><p>The AGENTS.md contract, example prompts, the review loop, and how the CI gate protects your render.</p></a>
+      <a class="doc-card" href="faq.html"><small>Answers</small><h3>FAQ</h3><p>Silent renders, TTS voice-over, artifact expiry, hotlinked images, cache busting, and more.</p></a>
+      <a class="doc-card" href="preview.html"><small>Playground</small><h3>Scene kitchen sink</h3><p>Every scene type rendered statically — useful for QA when you extend the design system.</p></a>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="cta-banner">
+      <h2>Ship your first video<br>in ten minutes.</h2>
+      <p>Fork the repo, flip on Pages, paste your outline to any coding agent, and click Run workflow. The artifact is your video.</p>
+      <a class="btn btn-black" href="getting-started.html">Start with the guide</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a>
+      <a href="scenes.html">Scenes</a>
+      <a href="design-system.html">Design</a>
+      <a href="agents.html">Agents</a>
+      <a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

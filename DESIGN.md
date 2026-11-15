@@ -2,7 +2,7 @@
 
 Derived from the Reels marketing site reference: pale-mint page, white rounded frame, soft green gradient panels, editorial serif display type, butter-yellow and emerald accents, generous pill radii, soft diffuse shadows.
 
-## Foundations (tokens.css)
+## Foundations (docs/tokens.css)
 
 | Token | Value |
 |---|---|
@@ -30,7 +30,7 @@ Derived from the Reels marketing site reference: pale-mint page, white rounded f
 - Enter: panel fades in 0.35s; contents stagger up 34px → 0 over 0.75s, 90ms stagger, `power3.out`.
 - Exit: scene fades out 0.35s. Progress bar fills linearly over scene duration.
 
-## Scene types (scenes.json `type`)
+## Scene types (docs/scenes.json `type`)
 
 | Type | Required | Purpose |
 |---|---|---|
@@ -53,7 +53,7 @@ Common fields: `kicker` (≤48 chars), `narration` (written even when silent), `
 - Kicker is a category label in Title Case (e.g. "The Setup"), not a sentence.
 
 ## Validation
-`npm run validate` checks scenes.json against `scenes.schema.json` (ajv). The render workflow runs it before recording — invalid content fails the job before any video is produced. Preview all types locally via `preview.html`.
+`npm run validate` checks docs/scenes.json against `scenes.schema.json` (ajv). The render workflow runs it before recording — invalid content fails the job before any video is produced. Preview all types locally via `docs/preview.html`.
 
 ## Do / Don't
 - Do: keep one idea per scene, real image URLs, type scale from tokens only.

@@ -15,10 +15,10 @@ const MIME = {
   '.webp': 'image/webp'
 };
 
-const root = __dirname;
+const root = path.join(__dirname, 'docs');
 const server = http.createServer((req, res) => {
   const urlPath = decodeURIComponent((req.url || '/').split('?')[0]);
-  let filePath = path.join(root, urlPath === '/' ? 'index.html' : urlPath);
+  let filePath = path.join(root, urlPath === '/' ? 'player.html' : urlPath);
   if (!filePath.startsWith(root)) { res.writeHead(403); res.end(); return; }
   fs.readFile(filePath, (err, data) => {
     if (err) { res.writeHead(404); res.end('Not found'); return; }
@@ -42,7 +42,7 @@ const server = http.createServer((req, res) => {
     recordVideo: { dir: videoDir, size: { width: 1280, height: 720 } }
   });
   const page = await context.newPage();
-  await page.goto('http://127.0.0.1:' + port + '/index.html', { waitUntil: 'load' });
+  await page.goto('http://127.0.0.1:' + port + '/player.html', { waitUntil: 'load' });
 
   await page.waitForFunction(() => document.title === 'DONE', null, { timeout: 300000, polling: 500 });
   console.log('Playback finished (title=DONE)');
@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
 
   const file = fs.readdirSync(videoDir).find(f => f.endsWith('.webm'));
   if (!file) throw new Error('No video recorded');
-  fs.copyFileSync(path.join(videoDir, file), path.join(root, 'out.webm'));
+  fs.copyFileSync(path.join(videoDir, file), path.join(__dirname, 'out.webm'));
   console.log('Wrote out.webm');
   process.exit(0);
 })().catch(err => {

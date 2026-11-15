@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scenes reference — Reels</title>
+<meta name="description" content="Every field in docs/scenes.json: scene types, limits, image rules, narration guidance, and a complete copy-paste example.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2310130F'/%3E%3Cellipse cx='12.5' cy='19' rx='7' ry='4.5' fill='white' transform='rotate(-35 12.5 19)'/%3E%3Cellipse cx='19.5' cy='13' rx='7' ry='4.5' fill='%23F7DC7D' transform='rotate(-35 19.5 13)'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav-logo" href="index.html" aria-label="Reels home">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+    REELS
+  </a>
+  <ul class="nav-links">
+    <li><a href="getting-started.html">Guide</a></li>
+    <li><a href="scenes.html" aria-current="page">Scenes</a></li>
+    <li><a href="design-system.html">Design</a></li>
+    <li><a href="agents.html">Agents</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+  </ul>
+  <a class="btn btn-black" style="padding:11px 22px;font-size:14px" href="https://github.com/kowshik3383/video-explainer-site">GitHub</a>
+  <button class="nav-toggle" aria-label="Toggle menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#10130F" stroke-width="2" stroke-linecap="round"/></svg></button>
+</header>
+
+<main class="docs-wrap">
+  <nav class="docs-sidebar" aria-label="Documentation">
+    <p>Documentation</p>
+    <a href="getting-started.html">Getting started</a>
+    <a href="scenes.html" aria-current="page">Scenes reference</a>
+    <a href="design-system.html">Design system</a>
+    <a href="agents.html">Agent playbook</a>
+    <a href="faq.html">FAQ</a>
+  </nav>
+
+  <article class="article">
+    <h1>Scenes reference</h1>
+    <p class="lede"><code>docs/scenes.json</code> is the only file your agent edits. Every scene has a <code>type</code> and a <code>duration</code>; the rest depends on the type.</p>
+
+    <h2>Top level</h2>
+    <table class="doc-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Rules</th></tr></thead>
+      <tbody>
+        <tr><td><code>title</code></td><td>string</td><td>Required. Used for the tab title while rendering.</td></tr>
+        <tr><td><code>brand</code></td><td>string</td><td>Optional. Watermark wordmark, max 24 chars. Default <code>REELERS</code>.</td></tr>
+        <tr><td><code>scenes</code></td><td>array</td><td>Required. 1–12 scenes, ordered intro → conclusion.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Common scene fields</h2>
+    <table class="doc-table">
+      <thead><tr><th>Field</th><th>Type</th><th>Rules</th></tr></thead>
+      <tbody>
+        <tr><td><code>type</code></td><td>enum</td><td>Required. One of <code>title</code>, <code>content</code>, <code>stat</code>, <code>bullets</code>, <code>quote</code>, <code>outro</code>.</td></tr>
+        <tr><td><code>duration</code></td><td>integer</td><td>Required. 4–10 seconds.</td></tr>
+        <tr><td><code>kicker</code></td><td>string</td><td>Optional. Category label, ≤ 48 chars. Rendered as uppercase with a rule.</td></tr>
+        <tr><td><code>narration</code></td><td>string</td><td>Optional now, required later. 1–3 spoken sentences, ≤ 600 chars. Silent today; TTS-ready.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Scene types</h2>
+
+    <h3>title — the intro</h3>
+    <table class="doc-table"><tbody><tr><td><code>heading</code></td><td>Required. ≤ 72 chars. Rendered at 108px Fraunces.</td></tr>
+    <tr><td><code>text</code></td><td>Optional one-liner under the hairline.</td></tr></tbody></table>
+    <pre><code>{ "type": "title", "kicker": "Science Explained", "heading": "How Photosynthesis Works", "text": "Sunlight in. Food and oxygen out.", "duration": 6 }</code></pre>
+
+    <h3>content — the workhorse split</h3>
+    <table class="doc-table"><tbody><tr><td><code>heading</code></td><td>Required. ≤ 72 chars.</td></tr>
+    <tr><td><code>text</code></td><td>Required. ≤ 140 chars (aim ≤ 15 words).</td></tr>
+    <tr><td><code>image</code></td><td>Optional. Full URL, <code>https://</code>. Unsplash with <code>?w=1280&amp;q=80&amp;auto=format&amp;fit=crop</code>.</td></tr>
+    <tr><td><code>badge</code></td><td>Optional. ≤ 30 chars. Yellow floating pill overlapping the image.</td></tr></tbody></table>
+    <pre><code>{ "type": "content", "kicker": "The Setup", "heading": "Three ingredients", "text": "Sunlight, water, and carbon dioxide.", "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&amp;q=80&amp;auto=format&amp;fit=crop", "badge": "The recipe", "duration": 6 }</code></pre>
+
+    <h3>stat — one hero number</h3>
+    <table class="doc-table"><tbody><tr><td><code>stat</code></td><td>Required. ≤ 16 chars. Rendered at 150px, e.g. <code>50%</code>, <code>3.5×</code>, <code>1900</code>.</td></tr>
+    <tr><td><code>text</code></td><td>Required. What the number means. ≤ 140 chars.</td></tr>
+    <tr><td><code>source</code></td><td>Optional. Uppercase meta line, ≤ 80 chars.</td></tr></tbody></table>
+    <pre><code>{ "type": "stat", "kicker": "By The Numbers", "stat": "50%", "text": "Of Earth's oxygen comes from ocean phytoplankton.", "source": "The ocean is the planet's largest forest", "duration": 7 }</code></pre>
+
+    <h3>bullets — checklist pills</h3>
+    <table class="doc-table"><tbody><tr><td><code>heading</code></td><td>Required. ≤ 72 chars.</td></tr>
+    <tr><td><code>bullets</code></td><td>Required. 2–5 items, each ≤ 64 chars (aim ≤ 6 words). Each renders as a white pill with an emerald check.</td></tr></tbody></table>
+    <pre><code>{ "type": "bullets", "kicker": "The Equation", "heading": "What happens in a leaf", "bullets": ["Sunlight splits water apart", "Carbon dioxide builds glucose", "Oxygen is released"], "duration": 7 }</code></pre>
+
+    <h3>quote</h3>
+    <table class="doc-table"><tbody><tr><td><code>quote</code></td><td>Required. ≤ 160 chars (aim ≤ 12 words). Italic Fraunces with an emerald quote mark.</td></tr>
+    <tr><td><code>attribution</code></td><td>Optional. ≤ 64 chars.</td></tr></tbody></table>
+    <pre><code>{ "type": "quote", "quote": "Nearly every breath you take came from a leaf.", "attribution": "Every living thing on Earth", "duration": 6 }</code></pre>
+
+    <h3>outro — end card</h3>
+    <table class="doc-table"><tbody><tr><td><code>heading</code></td><td>Optional. The wordmark. Defaults to “Reels”.</td></tr>
+    <tr><td><code>text</code></td><td>Optional tagline.</td></tr>
+    <tr><td><code>cta</code></td><td>Optional. Black pill label, ≤ 42 chars.</td></tr></tbody></table>
+    <pre><code>{ "type": "outro", "heading": "Reels", "text": "Sunlight in. Life out.", "cta": "Follow for more", "duration": 5 }</code></pre>
+
+    <h2>Images</h2>
+    <ul>
+      <li>Unsplash only — never invent photo IDs, never hotlink a page that will 404 mid-render.</li>
+      <li>Always <code>?w=1280&amp;q=80&amp;auto=format&amp;fit=crop</code>. One clear subject per scene.</li>
+      <li>If an image fails to load the scene still renders with copy only — but the render looks broken, so verify URLs before pushing.</li>
+    </ul>
+
+    <h2>Validation</h2>
+    <p><code>npm run validate</code> checks <code>docs/scenes.json</code> against <code>scenes.schema.json</code> (ajv, Draft 2020-12). The render workflow runs it <em>before</em> installing Chromium — invalid content fails the run in seconds. Field-level limits above are enforced there, not just by convention.</p>
+
+    <div class="callout callout-yellow"><strong>Full example:</strong> see <code>docs/scenes.json</code> in the repo — the “How Photosynthesis Works” demo is a valid 8-scene deck using all six types.</div>
+  </article>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <a class="nav-logo" href="index.html" style="font-size:13px" aria-label="Reels home">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#10130F"/><ellipse cx="12.5" cy="19" rx="7" ry="4.5" fill="#FFFFFF" transform="rotate(-35 12.5 19)"/><ellipse cx="19.5" cy="13" rx="7" ry="4.5" fill="#F7DC7D" transform="rotate(-35 19.5 13)"/></svg>
+        REELS
+      </a>
+      <a href="getting-started.html">Guide</a><a href="scenes.html">Scenes</a><a href="design-system.html">Design</a><a href="agents.html">Agents</a><a href="faq.html">FAQ</a>
+      <span class="spacer"></span>
+      <a href="https://github.com/kowshik3383/video-explainer-site">GitHub ↗</a>
+    </div>
+    <p class="foot-note">© <span data-year></span> Reels. Rendered entirely in GitHub Actions — artifacts expire after 90 days, so keep the ones you love.</p>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
