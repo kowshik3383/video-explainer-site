@@ -1,80 +1,103 @@
 {
-  "title": "How Photosynthesis Works",
-  "brand": "Reels",
+  "title": "How Strapi CMS Works",
+  "brand": "Tech Explained",
   "scenes": [
     {
       "type": "title",
-      "kicker": "Science Explained",
-      "heading": "How Photosynthesis Works",
-      "text": "Sunlight in. Food and oxygen out.",
-      "narration": "Photosynthesis is how plants turn sunlight into food. Here is how it works.",
-      "duration": 6
+      "duration": 5,
+      "kicker": "Headless CMS, explained",
+      "heading": "How Strapi CMS Works",
+      "text": "The tech behind the open-source headless CMS.",
+      "narration": "Strapi is an open-source headless CMS. In this video, we look at what is happening under the hood, from the database to the API."
     },
     {
       "type": "content",
-      "kicker": "The Setup",
-      "heading": "Three ingredients",
-      "text": "Sunlight, water, and carbon dioxide.",
-      "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80&auto=format&fit=crop",
-      "badge": "The recipe",
-      "narration": "Every plant needs three ingredients: sunlight from above, water from the soil, and carbon dioxide from the air.",
-      "duration": 6
-    },
-    {
-      "type": "content",
-      "kicker": "Step One",
-      "heading": "Catching the light",
-      "text": "Chlorophyll, the green pigment, absorbs sunlight.",
-      "image": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1280&q=80&auto=format&fit=crop",
-      "badge": "Step 1",
-      "narration": "Leaves contain chlorophyll, a green pigment that captures light energy from the sun.",
-      "duration": 6
-    },
-    {
-      "type": "stat",
-      "kicker": "By The Numbers",
-      "stat": "50%",
-      "text": "Of Earth's oxygen comes from ocean phytoplankton.",
-      "source": "The ocean is the planet's largest forest",
-      "narration": "Half of the oxygen in the atmosphere comes from tiny ocean plants called phytoplankton.",
-      "duration": 7
+      "duration": 7,
+      "kicker": "The big idea",
+      "heading": "Headless means no frontend",
+      "text": "Strapi stores your content and serves it as JSON over APIs. Your frontend or app decides how to display it.",
+      "narration": "Traditional CMS tools mix content and page design together. Strapi is headless. It only stores content and serves it as JSON, so a website, a mobile app, or any other client can use the same content."
     },
     {
       "type": "bullets",
-      "kicker": "The Equation",
-      "heading": "What happens in a leaf",
+      "duration": 8,
+      "kicker": "Under the hood",
+      "heading": "The tech stack",
       "bullets": [
-        "Sunlight splits water apart",
-        "Carbon dioxide builds glucose",
-        "Oxygen is released"
+        "Node.js and TypeScript backend",
+        "Koa handles HTTP and routing",
+        "Knex-based database layer",
+        "React admin panel, built with Vite",
+        "Plugins extend everything"
       ],
-      "narration": "Light energy splits water into hydrogen and oxygen. Carbon dioxide is then combined into glucose, and oxygen is released.",
-      "duration": 7
-    },
-    {
-      "type": "quote",
-      "quote": "Nearly every breath you take came from a leaf.",
-      "attribution": "Every living thing on Earth",
-      "narration": "Nearly every breath you take comes from a leaf, or from the ocean doing the same thing.",
-      "duration": 6
+      "narration": "The backend runs on Node.js with TypeScript. It uses Koa for HTTP and routing, and a database layer built on Knex. The admin panel is a React app, built with Vite in version 5. Almost every feature is delivered as a plugin."
     },
     {
       "type": "content",
-      "kicker": "Why It Matters",
-      "heading": "Feeding the world",
-      "text": "Crops, forests, and plankton anchor every food chain.",
-      "image": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1280&q=80&auto=format&fit=crop",
-      "badge": "The stakes",
-      "narration": "Farms, forests, and ocean plankton all photosynthesize, forming the base of nearly every food chain.",
-      "duration": 7
+      "duration": 7,
+      "kicker": "Step 1",
+      "heading": "Content-Type Builder",
+      "text": "You design fields in the Content-Type Builder. Strapi saves a schema file and builds the API from it.",
+      "narration": "Everything starts with a content type. In the Content-Type Builder you add fields such as text, media, relations, or components. Strapi writes a schema file for you, and that schema is the single source of truth for your API."
+    },
+    {
+      "type": "bullets",
+      "duration": 8,
+      "kicker": "Step 2",
+      "heading": "Four files per content type",
+      "bullets": [
+        "Schema: fields and relations",
+        "Route: maps a URL to a handler",
+        "Controller: handles the request",
+        "Service: holds the business logic"
+      ],
+      "narration": "For each content type, Strapi creates a folder under src slash api. It contains the schema, a route, a controller, and a service. You can customize any of these files with plain JavaScript or TypeScript."
+    },
+    {
+      "type": "content",
+      "duration": 7,
+      "kicker": "Strapi 5",
+      "heading": "The Document Service",
+      "text": "The Document Service in v5 handles drafts, publishing, locales and relations in one layer above the database.",
+      "narration": "Version 5 introduced the Document Service API, which replaces the older Entity Service. It is one consistent layer for creating, reading, updating, and deleting content, including draft and publish states and translations."
+    },
+    {
+      "type": "content",
+      "duration": 7,
+      "kicker": "Storage",
+      "heading": "Your database, your server",
+      "text": "A Knex-based layer runs on PostgreSQL, MySQL, MariaDB or SQLite, so the same project works on each.",
+      "narration": "Strapi runs on your own infrastructure. Its database layer is built on Knex and supports PostgreSQL, MySQL, MariaDB, and SQLite, so you can start small and move to a bigger database later."
+    },
+    {
+      "type": "bullets",
+      "duration": 9,
+      "kicker": "Request flow",
+      "heading": "What happens on one API call",
+      "bullets": [
+        "Client calls GET /api/articles",
+        "Koa router checks auth and permissions",
+        "Controller calls the service",
+        "Document Service queries the database",
+        "Result returns as JSON"
+      ],
+      "narration": "Here is one request from start to finish. The client calls an endpoint. The Koa router checks authentication and permissions. The controller calls the service, which uses the Document Service to query the database. The result goes back to the client as JSON. By default, the public APIs return the published version of the content."
+    },
+    {
+      "type": "stat",
+      "duration": 7,
+      "kicker": "Two APIs",
+      "stat": "REST + GraphQL",
+      "text": "Both APIs are generated from the same content schemas. GraphQL comes through an optional plugin.",
+      "narration": "Every content type gets REST endpoints automatically, with filtering, sorting, and pagination. Add the GraphQL plugin and you get a GraphQL API generated from the same schemas, with no routing code to write."
     },
     {
       "type": "outro",
-      "heading": "Reels",
-      "text": "Sunlight in. Life out.",
-      "cta": "Follow for more",
-      "narration": "That is photosynthesis. Sunlight in, life out.",
-      "duration": 5
+      "duration": 6,
+      "heading": "Schema in, API out",
+      "text": "Define your content once and let Strapi generate the backend.",
+      "cta": "Build your first content type",
+      "narration": "That is Strapi in short. You define the content model once, and Strapi generates the admin interface, the database tables, and the APIs. Try building your first content type to see it in action."
     }
   ]
 }
