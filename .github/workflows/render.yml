@@ -1,0 +1,32 @@
+name: Render video
+
+on:
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm install
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: node record.js
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+
+      - name: Convert to MP4
+        run: ffmpeg -y -i out.webm -c:v libx264 -pix_fmt yuv420p -crf 20 -movflags +faststart video.mp4
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: video
+          path: video.mp4
+          retention-days: 90
