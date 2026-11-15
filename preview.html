@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reels — Scene Kitchen Sink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { overflow: auto; padding: 40px; background: #10130F; }
+  h1 { font-family: var(--font-display); color: #fff; font-size: 40px; font-weight: 600; margin-bottom: 8px; }
+  p.sub { color: rgba(255,255,255,0.55); font-family: var(--font-body); margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, 460px); gap: 28px; }
+  .label { font-family: var(--font-body); color: #F7DC7D; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 10px; }
+  .preview-stage { position: relative; width: 1280px; height: 720px; background: var(--color-page); border-radius: 20px; overflow: hidden; transform: scale(0.36); transform-origin: top left; }
+  .preview-holder { position: absolute; inset: 16px; }
+  .preview-cell { width: 460px; height: 273px; overflow: hidden; }
+</style>
+<script>window.__PREVIEW__ = true;</script>
+</head>
+<body>
+<h1>Scene Kitchen Sink</h1>
+<p class="sub">Static render of every scene type in the design system. Add a type to player.js TEMPLATES and it appears here.</p>
+<div class="grid" id="grid"></div>
+<script src="player.js"></script>
+<script>
+const DEMO = [
+  { label: 'title', scene: { type: 'title', kicker: 'Science Explained', heading: 'How Photosynthesis Works', text: 'Sunlight in. Food and oxygen out.' } },
+  { label: 'content', scene: { type: 'content', kicker: 'The Setup', heading: 'Three ingredients', text: 'Sunlight, water, and carbon dioxide.', image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80&auto=format&fit=crop', badge: 'The recipe' } },
+  { label: 'stat', scene: { type: 'stat', kicker: 'By The Numbers', stat: '50%', text: "Of Earth's oxygen comes from ocean phytoplankton.", source: 'The ocean is the planet\'s largest forest' } },
+  { label: 'bullets', scene: { type: 'bullets', kicker: 'The Equation', heading: 'What happens in a leaf', bullets: ['Sunlight splits water apart', 'Carbon dioxide builds glucose', 'Oxygen is released'] } },
+  { label: 'quote', scene: { type: 'quote', quote: 'Nearly every breath you take came from a leaf.', attribution: 'Every living thing on Earth' } },
+  { label: 'outro', scene: { type: 'outro', heading: 'Reels', text: 'Sunlight in. Life out.', cta: 'Follow for more' } }
+];
+
+const grid = document.getElementById('grid');
+for (const { label, scene } of DEMO) {
+  const cell = document.createElement('div');
+  cell.className = 'preview-cell';
+  cell.innerHTML = '<div class="label">' + label + '</div>' +
+    '<div class="preview-stage"><div class="frame"><div class="preview-holder">' + window.ScenePlayer.sceneHTML(scene) + '</div></div></div>';
+  grid.appendChild(cell);
+}
+</script>
+</body>
+</html>

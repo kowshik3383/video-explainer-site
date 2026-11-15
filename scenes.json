@@ -1,61 +1,80 @@
 {
   "title": "How Photosynthesis Works",
+  "brand": "Reels",
   "scenes": [
     {
+      "type": "title",
+      "kicker": "Science Explained",
       "heading": "How Photosynthesis Works",
-      "text": "The recipe plants use to turn sunlight into food.",
-      "image": "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1280&q=80&auto=format&fit=crop",
-      "narration": "Photosynthesis is the process plants use to turn sunlight into food. Let's see how it works.",
+      "text": "Sunlight in. Food and oxygen out.",
+      "narration": "Photosynthesis is how plants turn sunlight into food. Here is how it works.",
       "duration": 6
     },
     {
-      "heading": "What plants need",
+      "type": "content",
+      "kicker": "The Setup",
+      "heading": "Three ingredients",
       "text": "Sunlight, water, and carbon dioxide.",
       "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1280&q=80&auto=format&fit=crop",
-      "narration": "Every plant needs three ingredients: sunlight, water from the soil, and carbon dioxide from the air.",
+      "badge": "The recipe",
+      "narration": "Every plant needs three ingredients: sunlight from above, water from the soil, and carbon dioxide from the air.",
       "duration": 6
     },
     {
+      "type": "content",
+      "kicker": "Step One",
       "heading": "Catching the light",
       "text": "Chlorophyll, the green pigment, absorbs sunlight.",
       "image": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1280&q=80&auto=format&fit=crop",
+      "badge": "Step 1",
       "narration": "Leaves contain chlorophyll, a green pigment that captures light energy from the sun.",
       "duration": 6
     },
     {
-      "heading": "Light powers the reaction",
-      "text": "Sunlight splits water into hydrogen and oxygen.",
-      "image": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1280&q=80&auto=format&fit=crop",
-      "narration": "Light energy splits water molecules into hydrogen and oxygen. The oxygen is released.",
-      "duration": 6
-    },
-    {
-      "heading": "Building sugar",
-      "text": "Carbon dioxide becomes glucose, the plant's food.",
-      "image": "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=1280&q=80&auto=format&fit=crop",
-      "narration": "Carbon dioxide is combined with hydrogen to build glucose, a sugar the plant uses for energy and growth.",
+      "type": "stat",
+      "kicker": "By The Numbers",
+      "stat": "50%",
+      "text": "Of Earth's oxygen comes from ocean phytoplankton.",
+      "source": "The ocean is the planet's largest forest",
+      "narration": "Half of the oxygen in the atmosphere comes from tiny ocean plants called phytoplankton.",
       "duration": 7
     },
     {
-      "heading": "Oxygen for us",
-      "text": "Every breath you take came from a leaf.",
-      "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1280&q=80&auto=format&fit=crop",
-      "narration": "The oxygen released by photosynthesis fills the atmosphere. Nearly every breath you take comes from it.",
+      "type": "bullets",
+      "kicker": "The Equation",
+      "heading": "What happens in a leaf",
+      "bullets": [
+        "Sunlight splits water apart",
+        "Carbon dioxide builds glucose",
+        "Oxygen is released"
+      ],
+      "narration": "Light energy splits water into hydrogen and oxygen. Carbon dioxide is then combined into glucose, and oxygen is released.",
+      "duration": 7
+    },
+    {
+      "type": "quote",
+      "quote": "Nearly every breath you take came from a leaf.",
+      "attribution": "Every living thing on Earth",
+      "narration": "Nearly every breath you take comes from a leaf, or from the ocean doing the same thing.",
       "duration": 6
     },
     {
+      "type": "content",
+      "kicker": "Why It Matters",
       "heading": "Feeding the world",
-      "text": "Farms and forests run on captured sunlight.",
+      "text": "Crops, forests, and plankton anchor every food chain.",
       "image": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=1280&q=80&auto=format&fit=crop",
-      "narration": "Crops, forests, and ocean plankton all photosynthesize, forming the base of nearly every food chain.",
-      "duration": 6
+      "badge": "The stakes",
+      "narration": "Farms, forests, and ocean plankton all photosynthesize, forming the base of nearly every food chain.",
+      "duration": 7
     },
     {
-      "heading": "The big picture",
-      "text": "Sunlight in, food and oxygen out.",
-      "image": "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1280&q=80&auto=format&fit=crop",
-      "narration": "In short: sunlight in, food and oxygen out. Photosynthesis powers life on Earth.",
-      "duration": 6
+      "type": "outro",
+      "heading": "Reels",
+      "text": "Sunlight in. Life out.",
+      "cta": "Follow for more",
+      "narration": "That is photosynthesis. Sunlight in, life out.",
+      "duration": 5
     }
   ]
 }

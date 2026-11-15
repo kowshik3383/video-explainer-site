@@ -1,0 +1,45 @@
+:root {
+  --color-page: #E9F4EC;
+  --color-frame: #FFFFFF;
+  --color-panel-start: #DDF3E3;
+  --color-panel-end: #BDE9CB;
+  --color-ink: #10130F;
+  --color-ink-soft: rgba(16, 19, 15, 0.72);
+  --color-ink-faint: rgba(16, 19, 15, 0.45);
+  --color-accent-yellow: #F7DC7D;
+  --color-accent-yellow-ink: #3D2E00;
+  --color-accent-green: #2E9E63;
+  --color-accent-green-soft: #E4F5EA;
+  --color-hairline: rgba(16, 19, 15, 0.14);
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --text-kicker: 15px;
+  --text-body: 24px;
+  --text-body-lg: 28px;
+  --text-h2: 54px;
+  --text-display: 108px;
+  --text-stat: 150px;
+
+  --tracking-kicker: 0.16em;
+  --leading-display: 1.02;
+  --leading-body: 1.4;
+
+  --radius-frame: 32px;
+  --radius-panel: 26px;
+  --radius-card: 22px;
+  --radius-pill: 999px;
+
+  --shadow-frame: 0 40px 80px rgba(16, 40, 24, 0.28);
+  --shadow-card: 0 24px 60px rgba(16, 40, 24, 0.22);
+  --shadow-pill: 0 10px 28px rgba(16, 40, 24, 0.16);
+
+  --stage-width: 1280px;
+  --stage-height: 720px;
+  --frame-inset: 34px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-enter: 0.9s;
+  --dur-exit: 0.4s;
+}
